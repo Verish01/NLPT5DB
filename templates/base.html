@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #4caf50;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #e9f7e9;
+      }
+      @media screen and (max-width: 600px) {
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+        th {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+        tr {
+          border: 1px solid #ccc;
+          margin-bottom: 5px;
+        }
+        td {
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+          text-align: right;
+        }
+        td:before {
+          content: attr(data-label);
+          position: absolute;
+          left: 10px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          text-align: left;
+          font-weight: bold;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Inventory List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>product_name</th>
+          <th>Quantity_in_stock</th>
+          <th>Cost_per_Item</th>
+          <th>Quantity_Sold</th>
+          <th>Sales</th>
+          <th>Stock_Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in inventory_items %}
+        <tr>
+          <td data-label="product_name">{{ item.product_name }}</td>
+          <td data-label="Quantity_in_Stock">{{ item.quantity_in_stock }}</td>
+          <td data-label="Cost_per_Item">{{ item.cost_per_item }}</td>
+          <td data-label="Quantity_Sold">{{ item.quantity_sold }}</td>
+          <td data-label="Sales">{{ item.sales }}</td>
+          <td data-label="Stock_Date">{{ item.stock_date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

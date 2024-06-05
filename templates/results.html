@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Query Results</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 800px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #007bff;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      a:hover {
+        background-color: #0056b3;
+      }
+
+      .sql-section {
+        margin-top: 40px;
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+      }
+
+      .sql-code {
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Results for query:</h1>
+      {% if results %}
+      <table>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Quantity in Stock</th>
+          <th>Cost per Item</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+          <td>{{ row.0 }}</td>
+          <td>{{ row.1 }}</td>
+          <td>{{ row.2 }}</td>
+          <td>{{ row.3 }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <p>No results found</p>
+      {% endif %}
+      <a href="/">Go back</a>
+      <div class="sql-section">
+        <h2>SQL Query Generated:</h2>
+        <div class="sql-code">{{ query }}</div>
+      </div>
+    </div>
+  </body>
+</html>
